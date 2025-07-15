@@ -79,7 +79,7 @@ export default function Hero() {
                   2000,
                   "Laravel Developer",
                   2000,
-                  "API Designer",
+                  "Backend Developer",
                   2000,
                 ]}
                 wrapper="span"
