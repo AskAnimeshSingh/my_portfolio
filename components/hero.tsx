@@ -3,12 +3,11 @@
 import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { Github, Linkedin, Mail, Phone, Download, ArrowDown } from "lucide-react"
-import Image from "next/image"
 
 export default function Hero() {
   const socialLinks = [
-    { icon: Github, href: "https://github.com/askanimeshsingh", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/animesh", label: "LinkedIn" },
+    { icon: Github, href: "https://github.com/AskAnimeshSingh", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/askanimeshsingh/", label: "LinkedIn" },
     { icon: Mail, href: "mailto:askanimeshsingh@gmail.com", label: "Email" },
     { icon: Phone, href: "tel:8795087016", label: "Phone" },
   ]
@@ -125,31 +124,17 @@ export default function Hero() {
                 </span>
               </motion.button>
 
-              <motion.button
-                className="group px-8 py-4 border-2 border-purple-500 text-purple-400 font-semibold rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  try {
-                    const link = document.createElement('a');
-                    link.href = '/Animesh_Singh_2025..pdf';
-                    link.download = 'Animesh_Singh_Resume_2025.pdf';
-                    link.target = '_blank';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                  } catch (error) {
-                    console.error('Download failed:', error);
-                    // Fallback: open in new tab
-                    window.open('/Animesh_Singh_2025..pdf', '_blank');
-                  }
-                }}
+              <a
+                href="/Animesh_Singh_2025..pdf"
+                download="Animesh_Singh_Resume_2025.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group px-8 py-4 border-2 border-purple-500 text-purple-400 font-semibold rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2 relative z-10"
+                style={{ textDecoration: 'none' }}
               >
-                <span className="flex items-center justify-center space-x-2">
-                  <Download className="w-5 h-5" />
-                  <span>Download CV</span>
-                </span>
-              </motion.button>
+                <Download className="w-5 h-5" />
+                <span>Download CV</span>
+              </a>
             </motion.div>
 
             {/* Social Links */}
@@ -165,12 +150,13 @@ export default function Hero() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-slate-800/50 rounded-full text-gray-400 hover:text-white hover:bg-purple-500/20 transition-all duration-300"
+                  className="p-3 bg-slate-800/50 rounded-full text-gray-400 hover:text-white hover:bg-purple-500/20 transition-all duration-300 relative z-10 cursor-pointer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.4 + index * 0.1 }}
+                  style={{ pointerEvents: 'auto' }}
                 >
                   <social.icon className="w-6 h-6" />
                 </motion.a>
@@ -178,7 +164,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Profile Image */}
+          {/* Right Column - Animated Coding Illustration */}
           <motion.div
             className="flex justify-center lg:justify-end"
             initial={{ opacity: 0, x: 50 }}
@@ -188,14 +174,14 @@ export default function Hero() {
             <motion.div className="relative" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
               {/* Animated Border */}
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-full blur-lg opacity-75"
+                className="absolute -inset-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-3xl blur-lg opacity-75"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
               />
 
-              {/* Profile Image Container */}
+              {/* Main Illustration Container */}
               <motion.div
-                className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/10"
+                className="relative w-80 h-80 lg:w-96 lg:h-96 bg-gradient-to-br from-slate-800/90 to-slate-900/90 rounded-3xl border-4 border-white/10 overflow-hidden"
                 animate={{
                   boxShadow: [
                     "0 0 20px rgba(168, 85, 247, 0.4)",
@@ -205,39 +191,316 @@ export default function Hero() {
                 }}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
               >
-                <Image
-                  src="/placeholder.svg?height=400&width=400"
-                  alt="Animesh Singh"
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
+                {/* Animated SVG Illustration */}
+                <svg viewBox="0 0 400 400" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                  {/* Background Grid */}
+                  <defs>
+                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(139, 92, 246, 0.1)" strokeWidth="0.5" />
+                    </pattern>
+                  </defs>
+                  <rect width="400" height="400" fill="url(#grid)" />
+
+                  {/* Desk */}
+                  <motion.rect
+                    x="50"
+                    y="280"
+                    width="300"
+                    height="80"
+                    rx="10"
+                    fill="url(#deskGradient)"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                  />
+
+                  {/* Monitor */}
+                  <motion.rect
+                    x="120"
+                    y="180"
+                    width="160"
+                    height="100"
+                    rx="8"
+                    fill="url(#monitorGradient)"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.7, duration: 0.8 }}
+                  />
+
+                  {/* Monitor Screen */}
+                  <motion.rect
+                    x="130"
+                    y="190"
+                    width="140"
+                    height="80"
+                    rx="4"
+                    fill="#0f172a"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 0.5 }}
+                  />
+
+                  {/* Code Lines */}
+                  <motion.g
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.2, duration: 0.8 }}
+                  >
+                    <motion.rect
+                      x="135"
+                      y="200"
+                      width="60"
+                      height="3"
+                      fill="#8b5cf6"
+                      animate={{ width: [0, 60, 60] }}
+                      transition={{ delay: 1.5, duration: 1 }}
+                    />
+                    <motion.rect
+                      x="135"
+                      y="210"
+                      width="80"
+                      height="3"
+                      fill="#ec4899"
+                      animate={{ width: [0, 80, 80] }}
+                      transition={{ delay: 1.7, duration: 1 }}
+                    />
+                    <motion.rect
+                      x="135"
+                      y="220"
+                      width="45"
+                      height="3"
+                      fill="#06b6d4"
+                      animate={{ width: [0, 45, 45] }}
+                      transition={{ delay: 1.9, duration: 1 }}
+                    />
+                    <motion.rect
+                      x="135"
+                      y="230"
+                      width="70"
+                      height="3"
+                      fill="#10b981"
+                      animate={{ width: [0, 70, 70] }}
+                      transition={{ delay: 2.1, duration: 1 }}
+                    />
+                    <motion.rect
+                      x="135"
+                      y="240"
+                      width="55"
+                      height="3"
+                      fill="#f59e0b"
+                      animate={{ width: [0, 55, 55] }}
+                      transition={{ delay: 2.3, duration: 1 }}
+                    />
+                  </motion.g>
+
+                  {/* Keyboard */}
+                  <motion.rect
+                    x="140"
+                    y="300"
+                    width="120"
+                    height="40"
+                    rx="6"
+                    fill="url(#keyboardGradient)"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.9, duration: 0.8 }}
+                  />
+
+                  {/* Keyboard Keys */}
+                  <motion.g
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.1, duration: 0.5 }}
+                  >
+                    {[...Array(24)].map((_, i) => (
+                      <motion.rect
+                        key={i}
+                        x={145 + (i % 8) * 13}
+                        y={305 + Math.floor(i / 8) * 10}
+                        width="10"
+                        height="8"
+                        rx="2"
+                        fill="rgba(255, 255, 255, 0.1)"
+                        animate={{
+                          fill: ["rgba(255, 255, 255, 0.1)", "rgba(139, 92, 246, 0.3)", "rgba(255, 255, 255, 0.1)"],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Number.POSITIVE_INFINITY,
+                          delay: Math.random() * 2,
+                        }}
+                      />
+                    ))}
+                  </motion.g>
+
+                  {/* Coffee Cup */}
+                  <motion.g
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.3, duration: 0.8 }}
+                  >
+                    <ellipse cx="320" cy="320" rx="15" ry="8" fill="url(#cupGradient)" />
+                    <rect x="305" y="300" width="30" height="25" rx="3" fill="url(#cupGradient)" />
+                    <path
+                      d="M 335 310 Q 345 310 345 320 Q 345 330 335 330"
+                      fill="none"
+                      stroke="rgba(139, 92, 246, 0.6)"
+                      strokeWidth="2"
+                    />
+
+                    {/* Steam */}
+                    <motion.path
+                      d="M 315 295 Q 315 285 320 285 Q 325 285 325 295"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.4)"
+                      strokeWidth="1.5"
+                      animate={{ opacity: [0.4, 0.8, 0.4] }}
+                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+                    />
+                    <motion.path
+                      d="M 320 295 Q 320 285 325 285 Q 330 285 330 295"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.4)"
+                      strokeWidth="1.5"
+                      animate={{ opacity: [0.8, 0.4, 0.8] }}
+                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 0.5 }}
+                    />
+                  </motion.g>
+
+                  {/* Floating Code Symbols */}
+                  <motion.g>
+                    <motion.text
+                      x="80"
+                      y="150"
+                      fill="#8b5cf6"
+                      fontSize="24"
+                      fontFamily="monospace"
+                      animate={{
+                        y: [150, 140, 150],
+                        opacity: [0.6, 1, 0.6],
+                      }}
+                      transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                    >
+                      {"</>"}
+                    </motion.text>
+
+                    <motion.text
+                      x="320"
+                      y="200"
+                      fill="#ec4899"
+                      fontSize="20"
+                      fontFamily="monospace"
+                      animate={{
+                        y: [200, 190, 200],
+                        opacity: [0.6, 1, 0.6],
+                      }}
+                      transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+                    >
+                      {"{}"}
+                    </motion.text>
+
+                    <motion.text
+                      x="60"
+                      y="250"
+                      fill="#06b6d4"
+                      fontSize="18"
+                      fontFamily="monospace"
+                      animate={{
+                        y: [250, 240, 250],
+                        opacity: [0.6, 1, 0.6],
+                      }}
+                      transition={{ duration: 2.8, repeat: Number.POSITIVE_INFINITY, delay: 0.5 }}
+                    >
+                      {"()"}
+                    </motion.text>
+
+                    <motion.text
+                      x="340"
+                      y="160"
+                      fill="#10b981"
+                      fontSize="16"
+                      fontFamily="monospace"
+                      animate={{
+                        y: [160, 150, 160],
+                        opacity: [0.6, 1, 0.6],
+                      }}
+                      transition={{ duration: 3.2, repeat: Number.POSITIVE_INFINITY, delay: 1.5 }}
+                    >
+                      {"[]"}
+                    </motion.text>
+                  </motion.g>
+
+                  {/* Gradients */}
+                  <defs>
+                    <linearGradient id="deskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#374151" />
+                      <stop offset="100%" stopColor="#1f2937" />
+                    </linearGradient>
+
+                    <linearGradient id="monitorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#4b5563" />
+                      <stop offset="100%" stopColor="#374151" />
+                    </linearGradient>
+
+                    <linearGradient id="keyboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#6b7280" />
+                      <stop offset="100%" stopColor="#4b5563" />
+                    </linearGradient>
+
+                    <linearGradient id="cupGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#8b5cf6" />
+                      <stop offset="100%" stopColor="#ec4899" />
+                    </linearGradient>
+                  </defs>
+                </svg>
 
                 {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 to-transparent" />
               </motion.div>
 
-              {/* Floating Elements */}
+              {/* Floating Tech Icons */}
               <motion.div
-                className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl"
+                className="absolute -top-6 -right-6 w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-2xl"
                 animate={{
                   y: [0, -10, 0],
-                  rotate: [0, 180, 360],
+                  rotate: [0, 360],
                 }}
-                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
+              >
+                ⚛️
+              </motion.div>
+
+              <motion.div
+                className="absolute -bottom-6 -left-6 w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl"
+                animate={{
+                  y: [0, 10, 0],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+              >
+                🚀
+              </motion.div>
+
+              <motion.div
+                className="absolute top-1/2 -left-8 w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-lg"
+                animate={{
+                  x: [0, -5, 0],
+                  rotate: [0, -180, -360],
+                }}
+                transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY, delay: 2 }}
               >
                 💻
               </motion.div>
 
               <motion.div
-                className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold"
+                className="absolute top-1/4 -right-8 w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold"
                 animate={{
-                  y: [0, 10, 0],
-                  scale: [1, 1.2, 1],
+                  x: [0, 5, 0],
+                  y: [0, -8, 0],
                 }}
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+                transition={{ duration: 3.5, repeat: Number.POSITIVE_INFINITY, delay: 0.5 }}
               >
-                🚀
+                ⚡
               </motion.div>
             </motion.div>
           </motion.div>
