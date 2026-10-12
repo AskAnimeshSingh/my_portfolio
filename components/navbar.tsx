@@ -62,7 +62,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div className="flex-shrink-0" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          {/* <motion.div className="flex-shrink-0" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <motion.div
               className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent cursor-pointer"
               onClick={() => scrollToSection("#home")}
@@ -73,7 +73,33 @@ export default function Navbar() {
             >
               &lt;AS/&gt;
             </motion.div>
-          </motion.div>
+          </motion.div> */}
+          <motion.div
+  className="flex-shrink-0"
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  <motion.div
+    className="text-2xl md:text-3xl font-extrabold font-mono bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent cursor-pointer tracking-tight"
+    onClick={() => scrollToSection("#home")}
+    animate={{
+      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+      opacity: [0.6, 1, 0.6],
+    }}
+    transition={{
+      duration: 4,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+    style={{
+      backgroundSize: "200% 200%",
+      letterSpacing: "-0.05em",
+    }}
+  >
+    &lt;/Ani.dev&gt;
+  </motion.div>
+</motion.div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">

@@ -1,65 +1,61 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Inter_Tight, Instrument_Serif, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+const sans = Inter_Tight({ subsets: ["latin"], variable: "--font-sans", display: "swap" })
+const serif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+})
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap", preload: false })
+
+const description =
+  "Animesh Singh — full-stack developer building Laravel & React products: booking engines, multi-role admin systems, payment flows and fast, animated interfaces."
 
 export const metadata: Metadata = {
-  title: "Animesh Singh - Full Stack Developer",
-  description:
-    "Highly motivated and adaptable software developer with experience in full-stack development, API design, and server deployment. Passionate about creating efficient, scalable, and secure web applications.",
-  keywords:
-    "Animesh Singh, Full Stack Developer, React Developer, Laravel Developer, Web Developer, Software Engineer, JavaScript, TypeScript, PHP, Python",
+  title: "Animesh Singh — Full-Stack Developer",
+  description,
+  keywords: [
+    "Animesh Singh",
+    "Full Stack Developer",
+    "Laravel Developer",
+    "React Developer",
+    "Next.js",
+    "PHP",
+    "Portfolio",
+  ],
   authors: [{ name: "Animesh Singh" }],
   creator: "Animesh Singh",
-  publisher: "Animesh Singh",
   robots: "index, follow",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://animeshsingh.dev",
-    title: "Animesh Singh - Full Stack Developer",
-    description:
-      "Highly motivated and adaptable software developer with experience in full-stack development, API design, and server deployment.",
-    siteName: "Animesh Singh Portfolio",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Animesh Singh - Full Stack Developer",
-      },
-    ],
+    title: "Animesh Singh — Full-Stack Developer",
+    description,
+    siteName: "Animesh Singh",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Animesh Singh - Full Stack Developer",
-    description:
-      "Highly motivated and adaptable software developer with experience in full-stack development, API design, and server deployment.",
-    images: ["/og-image.jpg"],
+    title: "Animesh Singh — Full-Stack Developer",
+    description,
   },
-  viewport: "width=device-width, initial-scale=1",
-  themeColor: "#8b5cf6",
-    generator: 'v0.dev'
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a0a0b",
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#8b5cf6" />
-        <meta name="msapplication-TileColor" content="#8b5cf6" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-      </head>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }
